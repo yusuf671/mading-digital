@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mading Digital - SD Amaliah</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            dark: '#AA8C2C',
+                        },
+                        islamic: {
+                            green: '#064E3B', /* Dark Emerald */
+                            blue: '#0F172A',  /* Dark Slate */
+                            cream: '#FEFCE8'  /* Light Yellow/Cream */
+                        }
+                    },
+                    fontFamily: {
+                        'amiri': ['Amiri', 'serif'],
+                        'quicksand': ['Quicksand', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        h1, h2, h3, .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Islamic Geometric Pattern Background */
+        .bg-pattern {
+            background-color: #064E3B;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Masonry Layout */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Card Hover Effects */
+        .mading-card {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        .mading-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4);
+            border-bottom: 4px solid #D4AF37;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #AA8C2C; }
+
+        /* Fade Animation for Tabs */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Gold Gradient Text */
+        .text-gradient-gold {
+            background: linear-gradient(to right, #F3E5AB, #D4AF37, #AA8C2C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-pattern relative text-center py-12 px-4 shadow-lg overflow-hidden border-b-4 border-gold">
+        <!-- Decorative Corners -->
+        <div class="absolute top-0 left-0 p-4 text-gold opacity-50 text-4xl"><i class="fas fa-moon"></i></div>
+        <div class="absolute top-0 right-0 p-4 text-gold opacity-50 text-4xl"><i class="fas fa-star"></i></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <p class="text-gold-light text-2xl mb-4 font-arabic" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+            <h1 class="text-4xl md:text-6xl font-bold text-gradient-gold mb-2 tracking-wide uppercase">
+                Mading Digital
+            </h1>
+            <h2 class="text-2xl md:text-3xl text-white font-amiri tracking-wider">
+                SD Amaliah
+            </h2>
+            <p class="text-gold-light mt-4 font-quicksand text-sm md:text-base max-w-2xl mx-auto">
+                "Menumbuhkan Kreativitas, Menebarkan Kebaikan dalam Cahaya Islam"
+            </p>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-islamic-blue shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex overflow-x-auto hide-scrollbar py-3 space-x-2 md:justify-center">
+                <button onclick="openTab('beranda')" class="tab-btn active shrink-0 px-6 py-2 rounded-full bg-gold text-islamic-blue font-bold transition-colors">
+                    <i class="fas fa-home mr-2"></i>Beranda
+                </button>
+                <button onclick="openTab('kelas1')" class="tab-btn shrink-0 px-6 py-2 rounded-full text-gold border border-gold hover:bg-gold hover:text-islamic-blue font-bold transition-colors">
+                    Kelas 1
+                </button>
+                <button onclick="openTab('kelas2')" class="tab-btn shrink-0 px-6 py-2 rounded-full text-gold border border-gold hover:bg-gold hover:text-islamic-blue font-bold transition-colors">
+                    Kelas 2
+                </button>
+                <button onclick="openTab('kelas3')" class="tab-btn shrink-0 px-6 py-2 rounded-full text-gold border border-gold hover:bg-gold hover:text-islamic-blue font-bold transition-colors">
+                    Kelas 3
+                </button>
+                <button onclick="openTab('kelas4')" class="tab-btn shrink-0 px-6 py-2 rounded-full text-gold border border-gold hover:bg-gold hover:text-islamic-blue font-bold transition-colors">
+                    Kelas 4
+                </button>
+                <button onclick="openTab('kelas5')" class="tab-btn shrink-0 px-6 py-2 rounded-full text-gold border border-gold hover:bg-gold hover:text-islamic-blue font-bold transition-colors">
+                    Kelas 5
+                </button>
+                <button onclick="openTab('kelas6')" class="tab-btn shrink-0 px-6 py-2 rounded-full text-gold border border-gold hover:bg-gold hover:text-islamic-blue font-bold transition-colors">
+                    Kelas 6
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
+        
+        <!-- BERANDA (HOME) SECTION -->
+        <section id="beranda" class="tab-content fade-in block">
+            
+            <!-- Hero Highlight / Hadith of the Day -->
+            <div class="bg-islamic-cream border-2 border-gold rounded-2xl p-6 md:p-10 mb-10 shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-gold opacity-10 text-9xl"><i class="fas fa-quote-right"></i></div>
+                <h2 class="text-3xl font-amiri text-islamic-green mb-4 border-b-2 border-gold-light pb-2 inline-block">
+                    <i class="fas fa-book-open mr-2 text-gold"></i>Hadits Hari Ini
+                </h2>
+                <div class="text-center py-6">
+                    <p class="text-2xl md:text-3xl font-arabic text-islamic-blue mb-6 leading-loose" dir="rtl">
+                        خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ
+                    </p>
+                    <p class="text-lg md:text-xl font-quicksand font-bold text-gray-700 italic">
+                        "Sebaik-baik manusia adalah yang paling bermanfaat bagi orang lain."
+                    </p>
+                    <p class="text-sm mt-4 text-gray-500 font-bold">(HR. Ahmad, ath-Thabrani, ad-Daruqutni)</p>
+                </div>
+            </div>
+
+            <!-- News & Announcements Grid -->
+            <h3 class="text-2xl font-bold text-islamic-blue mb-6 font-amiri flex items-center">
+                <i class="fas fa-bullhorn text-gold mr-3"></i> Info & Pengumuman
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden mading-card flex flex-col">
+                    <img src="https://placehold.co/600x300/064e3b/D4AF37?text=Lomba+Adzan" alt="News Image" class="w-full h-48 object-cover">
+                    <div class="p-5 flex-grow">
+                        <span class="text-xs font-bold text-gold uppercase tracking-wider">Pengumuman</span>
+                        <h4 class="text-xl font-bold mt-2 text-islamic-blue font-amiri">Lomba Adzan & Hafalan</h4>
+                        <p class="text-gray-600 mt-2 text-sm">Dalam rangka menyambut bulan suci Ramadhan, SD Amaliah akan mengadakan perlombaan antar kelas. Siapkan dirimu!</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 12 Okt 2023</span>
+                        <span>Oleh: Panitia PAI</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden mading-card flex flex-col">
+                    <img src="https://placehold.co/600x300/0f172a/D4AF37?text=Pekan+Kreativitas" alt="News Image" class="w-full h-48 object-cover">
+                    <div class="p-5 flex-grow">
+                        <span class="text-xs font-bold text-gold uppercase tracking-wider">Berita Sekolah</span>
+                        <h4 class="text-xl font-bold mt-2 text-islamic-blue font-amiri">Pekan Kreativitas Siswa</h4>
+                        <p class="text-gray-600 mt-2 text-sm">Alhamdulillah pekan kreativitas telah berjalan lancar. Karya-karya terbaik telah diunggah ke mading digital kelas masing-masing.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 05 Okt 2023</span>
+                        <span>Oleh: Kepala Sekolah</span>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Mini Info -->
+                <div class="bg-islamic-blue text-white rounded-xl shadow-md border-2 border-gold overflow-hidden mading-card flex flex-col justify-center p-6 text-center relative">
+                    <i class="fas fa-mosque text-5xl text-gold-light mb-4 opacity-50"></i>
+                    <h4 class="text-2xl font-bold font-amiri text-gold mb-2">Jadwal Shalat Dhuha</h4>
+                    <p class="text-sm font-light mb-4">Setiap Hari Jumat, Pukul 07.30 WIB di Masjid Sekolah.</p>
+                    <button class="mt-auto bg-gold text-islamic-blue font-bold py-2 px-4 rounded-full hover:bg-gold-light transition">Lihat Jadwal Lengkap</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- KELAS 1 SECTION -->
+        <section id="kelas1" class="tab-content fade-in hidden">
+            <div class="flex items-center justify-between mb-8 border-b-2 border-gold pb-4">
+                <h2 class="text-3xl font-amiri text-islamic-green font-bold"><i class="fas fa-star text-gold mr-3"></i>Karya Kelas 1</h2>
+                <span class="bg-gold text-islamic-blue px-4 py-1 rounded-full text-sm font-bold shadow-md">Wali Kelas: Bu Aisyah</span>
+            </div>
+            
+            <div class="masonry-grid">
+                <!-- Drawing Item -->
+                <div class="masonry-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mading-card">
+                    <img src="https://placehold.co/600x600/064e3b/ffffff?text=Gambar+Masjid" alt="Karya" class="w-full h-auto">
+                    <div class="p-4">
+                        <span class="inline-block bg-islamic-cream text-gold-dark text-xs px-2 py-1 rounded font-bold mb-2">Menggambar</span>
+                        <h4 class="text-lg font-bold text-islamic-blue font-amiri">Masjidku Indah</h4>
+                        <p class="text-gray-500 text-sm mt-1">Oleh: Ahmad Fatih</p>
+                    </div>
+                </div>
+
+                <!-- Poem Item -->
+                <div class="masonry-item bg-gradient-to-br from-islamic-cream to-white rounded-xl shadow-md border-l-4 border-l-gold p-6 mading-card">
+                    <span class="inline-block bg-islamic-blue text-gold-light text-xs px-2 py-1 rounded font-bold mb-4">Puisi Islami</span>
+                    <h4 class="text-xl font-bold text-islamic-green font-amiri mb-4">Ibu Tersayang</h4>
+                    <div class="text-gray-700 italic font-quicksand leading-relaxed">
+                        "Ibu...<br>
+                        Engkau bidadari surgaku.<br>
+                        Doamu selalu menyertaiku.<br>
+                        Semoga Allah menjagamu selalu."
+                    </div>
+                    <p class="text-right text-gray-500 text-sm mt-4 font-bold">- Siti Aminah</p>
+                </div>
+
+                <!-- Calligraphy Item -->
+                <div class="masonry-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mading-card">
+                    <img src="https://placehold.co/600x400/0f172a/D4AF37?text=Kaligrafi+Allah" alt="Karya" class="w-full h-auto">
+                    <div class="p-4">
+                        <span class="inline-block bg-islamic-green text-white text-xs px-2 py-1 rounded font-bold mb-2">Kaligrafi</span>
+                        <h4 class="text-lg font-bold text-islamic-blue font-amiri">Lafadz Allah</h4>
+                        <p class="text-gray-500 text-sm mt-1">Oleh: Budi Santoso</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KELAS 2 SECTION -->
+        <section id="kelas2" class="tab-content fade-in hidden">
+            <div class="flex items-center justify-between mb-8 border-b-2 border-gold pb-4">
+                <h2 class="text-3xl font-amiri text-islamic-green font-bold"><i class="fas fa-moon text-gold mr-3"></i>Karya Kelas 2</h2>
+                <span class="bg-gold text-islamic-blue px-4 py-1 rounded-full text-sm font-bold shadow-md">Wali Kelas: Pak Rahman</span>
+            </div>
+            
+            <div class="masonry-grid">
+                <!-- Short Story Item -->
+                <div class="masonry-item bg-white rounded-xl shadow-md border border-gold p-6 mading-card">
+                    <span class="inline-block bg-gold-light text-gold-dark text-xs px-2 py-1 rounded font-bold mb-4">Cerita Pendek</span>
+                    <h4 class="text-xl font-bold text-islamic-blue font-amiri mb-2">Senangnya Berbagi</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Hari ini Rina membawa bekal berlebih. Di sekolah, teman sebangkunya, Dini, lupa membawa bekal. Rina ingat pesan ustadzah bahwa berbagi itu indah dan disukai Allah. Rina pun membagi kuenya dengan Dini. Mereka makan bersama dengan riang.
+                    </p>
+                    <p class="text-gray-500 text-sm font-bold"><i class="fas fa-pencil-alt text-gold mr-2"></i>Karya: Nabila Yasmin</p>
+                </div>
+
+                <!-- Drawing Item -->
+                <div class="masonry-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mading-card">
+                    <img src="https://placehold.co/400x500/064e3b/D4AF37?text=Gambar+Keluarga" alt="Karya" class="w-full h-auto">
+                    <div class="p-4">
+                        <span class="inline-block bg-islamic-blue text-white text-xs px-2 py-1 rounded font-bold mb-2">Mewarnai</span>
+                        <h4 class="text-lg font-bold text-islamic-blue font-amiri">Keluargaku Bahagia</h4>
+                        <p class="text-gray-500 text-sm mt-1">Oleh: Rizky</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KELAS 3, 4, 5, 6 (Placeholders generated by JS later, or structured uniformly) -->
+        <section id="kelas3" class="tab-content fade-in hidden">
+            <div class="text-center py-20">
+                <i class="fas fa-paint-brush text-6xl text-gold opacity-50 mb-4"></i>
+                <h2 class="text-2xl font-amiri text-islamic-green">Mading Kelas 3 Sedang Disiapkan</h2>
+                <p class="text-gray-500 mt-2">Karya-karya hebat dari siswa kelas 3 akan segera ditampilkan di sini.</p>
+            </div>
+        </section>
+        <section id="kelas4" class="tab-content fade-in hidden">
+            <div class="text-center py-20">
+                <i class="fas fa-book text-6xl text-gold opacity-50 mb-4"></i>
+                <h2 class="text-2xl font-amiri text-islamic-green">Mading Kelas 4 Sedang Disiapkan</h2>
+                <p class="text-gray-500 mt-2">Nantikan cerita pendek dan pantun menarik dari kelas 4.</p>
+            </div>
+        </section>
+        <section id="kelas5" class="tab-content fade-in hidden">
+            <div class="text-center py-20">
+                <i class="fas fa-camera text-6xl text-gold opacity-50 mb-4"></i>
+                <h2 class="text-2xl font-amiri text-islamic-green">Mading Kelas 5 Sedang Disiapkan</h2>
+                <p class="text-gray-500 mt-2">Dokumentasi kegiatan dan karya digital kelas 5 akan segera hadir.</p>
+            </div>
+        </section>
+        <section id="kelas6" class="tab-content fade-in hidden">
+            <div class="text-center py-20">
+                <i class="fas fa-graduation-cap text-6xl text-gold opacity-50 mb-4"></i>
+                <h2 class="text-2xl font-amiri text-islamic-green">Mading Kelas 6 Sedang Disiapkan</h2>
+                <p class="text-gray-500 mt-2">Persiapan kelulusan dan karya akhir siswa kelas 6.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-islamic-blue text-white mt-auto border-t-4 border-gold pt-10 pb-6 text-center md:text-left">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h3 class="text-2xl font-amiri text-gold mb-4">SD Amaliah</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Mencetak generasi Rabbani yang cerdas, kreatif, dan berakhlak mulia. Mading Digital ini merupakan wadah kreativitas siswa secara online.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-gold mb-4">Kontak Sekolah</h4>
+                <ul class="text-gray-300 text-sm space-y-2">
+                    <li><i class="fas fa-map-marker-alt text-gold mr-2"></i> Jl. Pendidikan Islami No. 1, Kota</li>
+                    <li><i class="fas fa-phone text-gold mr-2"></i> (021) 1234-5678</li>
+                    <li><i class="fas fa-envelope text-gold mr-2"></i> info@sdamaliah.sch.id</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-gold mb-4">Ikuti Kami</h4>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-islamic-green border border-gold flex items-center justify-center hover:bg-gold hover:text-islamic-blue transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-islamic-green border border-gold flex items-center justify-center hover:bg-gold hover:text-islamic-blue transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-islamic-green border border-gold flex items-center justify-center hover:bg-gold hover:text-islamic-blue transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+            <p>&copy; 2023 Mading Digital SD Amaliah. All rights reserved.</p>
+            <p class="mt-1 text-xs">Developed with <i class="fas fa-heart text-gold"></i> for Education.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic (Tab Navigation) -->
+    <script>
+        function openTab(tabId) {
+            // 1. Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            // 2. Show requested content
+            const target = document.getElementById(tabId);
+            if(target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+            }
+
+            // 3. Update active button styling
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                // Reset styles
+                btn.classList.remove('bg-gold', 'text-islamic-blue', 'active');
+                btn.classList.add('text-gold', 'border', 'border-gold', 'hover:bg-gold', 'hover:text-islamic-blue');
+            });
+
+            // Find active button based on onclick attribute string
+            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if(activeBtn) {
+                activeBtn.classList.remove('text-gold', 'border', 'border-gold', 'hover:bg-gold', 'hover:text-islamic-blue');
+                activeBtn.classList.add('bg-gold', 'text-islamic-blue', 'active');
+            }
+        }
+    </script>
+</body>
+</html>
